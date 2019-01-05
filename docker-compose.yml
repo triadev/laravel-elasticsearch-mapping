@@ -2,7 +2,7 @@ version: '2.2'
 services:
   laravel-elasticsearch-mapping:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
-    container_name: laravel-elasticsearch-dsl
+    container_name: laravel-elasticsearch-mapping
     environment:
       - cluster.name=test-cluster
       - bootstrap.memory_lock=true
