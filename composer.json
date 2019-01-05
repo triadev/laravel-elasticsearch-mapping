@@ -54,7 +54,7 @@
     "prefer-stable": true,
     "scripts": {
         "test": "phpunit",
-        "check-style": "phpcs -p --standard=PSR2 src --ignore=src/Model/*",
-        "fix-style": "phpcbf -p --standard=PSR2 src --ignore=src/Model/*"
+        "check-style": "phpcs -p --standard=PSR2 src",
+        "fix-style": "phpcbf -p --standard=PSR2 src"
     }
 }

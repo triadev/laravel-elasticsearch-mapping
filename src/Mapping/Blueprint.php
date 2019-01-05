@@ -41,7 +41,7 @@ class Blueprint
     
     private function shouldCreateIndex(string $esIndex) : bool
     {
-        return ElasticMapping::getEsClient()->indices()->exists(['index' => $esIndex]);
+        return !ElasticMapping::getEsClient()->indices()->exists(['index' => $esIndex]);
     }
     
     private function createIndex(string $index, string $type) : array

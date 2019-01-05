@@ -31,7 +31,7 @@ install:
 
 script:
   - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
-  - ./vendor/bin/phpcs --standard=PSR2 src --ignore=src/Model/*
+  - ./vendor/bin/phpcs --standard=PSR2 src
 
 after_success:
   - travis_retry php coveralls.phar -v
