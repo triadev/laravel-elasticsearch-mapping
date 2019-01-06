@@ -11,7 +11,6 @@ build:
       cache:
         directories:
           - vendor/
-          -
       tests:
         stop_on_failure: true
         override:
