@@ -35,18 +35,6 @@ A service provider for laravel with a fluent elasticsearch mapping builder.
 The package is registered through the package discovery of laravel and Composer.
 >https://laravel.com/docs/5.7/packages
 
-Once installed you can now publish your config file and set your correct configuration for using the package.
-```php
-php artisan vendor:publish --provider="Triadev\Es\Mapping\Provider\ServiceProvider" --tag="config"
-```
-
-This will create a file ```config/laravel-elasticsearch-mapping.php```.
-
-## Configuration
-| Key | Env | Value | Default |
-|:-------------:|:-------------:|:-----:|:-----:|
-| index | LARAVEL_ELASTICSEARCH_DSL_INDEX | STRING | default_index |
-
 ## Reporting Issues
 If you do find an issue, please feel free to report it with GitHub's bug tracker for this project.
 
