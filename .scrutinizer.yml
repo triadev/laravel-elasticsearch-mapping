@@ -21,9 +21,9 @@ build:
               file: build/logs/clover.xml
               format: clover
 
-  analysis:
-    tests:
-      override:
-        - 'php-scrutinizer-run --enable-security-analysis'
-        - command: phpcs-run
-          use_website_config: true
+    analysis:
+      tests:
+        override:
+          - 'php-scrutinizer-run --enable-security-analysis'
+          - command: phpcs-run
+            use_website_config: true
