@@ -11,6 +11,7 @@ build:
       cache:
         directories:
           - vendor/
+
       tests:
         stop_on_failure: true
         override:
@@ -19,3 +20,10 @@ build:
             coverage:
               file: build/logs/clover.xml
               format: clover
+
+  analysis:
+    tests:
+      override:
+        - 'php-scrutinizer-run --enable-security-analysis'
+        - command: phpcs-run
+          use_website_config: true
