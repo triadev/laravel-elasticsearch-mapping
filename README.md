@@ -46,6 +46,7 @@ This package offers a fluent mapping builder for elasticsearch. The entry point 
 
 ### Build mapping
 ```php
+use Triadev\Es\Mapping\Facade\ElasticMapping;
 use Triadev\Es\Mapping\Mapping\Blueprint;
 
 ElasticMapping::map(function (Blueprint $blueprint) {
