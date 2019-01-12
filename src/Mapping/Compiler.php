@@ -2,16 +2,42 @@
 namespace Triadev\Es\Mapping\Mapping;
 
 use Illuminate\Support\Fluent;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentBinary;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentBoolean;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentByte;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentCompletion;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentDate;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentDateRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentDouble;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentDoubleRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentFloat;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentFloatRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentGeoPoint;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentGeoShape;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentHalfFloat;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentInteger;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentIntegerRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentIp;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentIpRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentKeyword;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentLong;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentLongRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentNested;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentObject;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentScaledFloat;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentShort;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentText;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentTokenCount;
 
 class Compiler
 {
     /**
      * Compile: text
      *
-     * @param Fluent $fluent
+     * @param FluentText $fluent
      * @return array
      */
-    public function compileText(Fluent $fluent) : array
+    public function compileText(FluentText $fluent) : array
     {
         return $this->formatAttributes([
             'type' => 'text',
@@ -38,10 +64,10 @@ class Compiler
     /**
      * Compile: keyword
      *
-     * @param Fluent $fluent
+     * @param FluentKeyword $fluent
      * @return array
      */
-    public function compileKeyword(Fluent $fluent) : array
+    public function compileKeyword(FluentKeyword $fluent) : array
     {
         return $this->formatAttributes([
             'type' => 'keyword',
@@ -64,10 +90,10 @@ class Compiler
     /**
      * Compile: long
      *
-     * @param Fluent $fluent
+     * @param FluentLong $fluent
      * @return array
      */
-    public function compileLong(Fluent $fluent) : array
+    public function compileLong(FluentLong $fluent) : array
     {
         return $this->compileNumeric($fluent);
     }
@@ -75,10 +101,10 @@ class Compiler
     /**
      * Compile: integer
      *
-     * @param Fluent $fluent
+     * @param FluentInteger $fluent
      * @return array
      */
-    public function compileInteger(Fluent $fluent) : array
+    public function compileInteger(FluentInteger $fluent) : array
     {
         return $this->compileNumeric($fluent);
     }
@@ -86,10 +112,10 @@ class Compiler
     /**
      * Compile: short
      *
-     * @param Fluent $fluent
+     * @param FluentShort $fluent
      * @return array
      */
-    public function compileShort(Fluent $fluent) : array
+    public function compileShort(FluentShort $fluent) : array
     {
         return $this->compileNumeric($fluent);
     }
@@ -97,10 +123,10 @@ class Compiler
     /**
      * Compile: byte
      *
-     * @param Fluent $fluent
+     * @param FluentByte $fluent
      * @return array
      */
-    public function compileByte(Fluent $fluent) : array
+    public function compileByte(FluentByte $fluent) : array
     {
         return $this->compileNumeric($fluent);
     }
@@ -108,10 +134,10 @@ class Compiler
     /**
      * Compile: double
      *
-     * @param Fluent $fluent
+     * @param FluentDouble $fluent
      * @return array
      */
-    public function compileDouble(Fluent $fluent) : array
+    public function compileDouble(FluentDouble $fluent) : array
     {
         return $this->compileNumeric($fluent);
     }
@@ -119,10 +145,10 @@ class Compiler
     /**
      * Compile: float
      *
-     * @param Fluent $fluent
+     * @param FluentFloat $fluent
      * @return array
      */
-    public function compileFloat(Fluent $fluent) : array
+    public function compileFloat(FluentFloat $fluent) : array
     {
         return $this->compileNumeric($fluent);
     }
@@ -130,10 +156,10 @@ class Compiler
     /**
      * Compile: half float
      *
-     * @param Fluent $fluent
+     * @param FluentHalfFloat $fluent
      * @return array
      */
-    public function compileHalfFloat(Fluent $fluent) : array
+    public function compileHalfFloat(FluentHalfFloat $fluent) : array
     {
         return $this->compileNumeric($fluent);
     }
@@ -141,10 +167,10 @@ class Compiler
     /**
      * Compile: scaled float
      *
-     * @param Fluent $fluent
+     * @param FluentScaledFloat $fluent
      * @return array
      */
-    public function compileScaledFloat(Fluent $fluent) : array
+    public function compileScaledFloat(FluentScaledFloat $fluent) : array
     {
         return $this->compileNumeric($fluent);
     }
@@ -172,10 +198,10 @@ class Compiler
     /**
      * Compile: date
      *
-     * @param Fluent $fluent
+     * @param FluentDate $fluent
      * @return array
      */
-    public function compileDate(Fluent $fluent) : array
+    public function compileDate(FluentDate $fluent) : array
     {
         return $this->formatAttributes([
             'type' => 'date',
@@ -193,10 +219,10 @@ class Compiler
     /**
      * Compile: boolean
      *
-     * @param Fluent $fluent
+     * @param FluentBoolean $fluent
      * @return array
      */
-    public function compileBoolean(Fluent $fluent) : array
+    public function compileBoolean(FluentBoolean $fluent) : array
     {
         return $this->formatAttributes([
             'type' => 'boolean',
@@ -211,10 +237,10 @@ class Compiler
     /**
      * Compile: binary
      *
-     * @param Fluent $fluent
+     * @param FluentBinary $fluent
      * @return array
      */
-    public function compileBinary(Fluent $fluent) : array
+    public function compileBinary(FluentBinary $fluent) : array
     {
         return $this->formatAttributes([
             'type' => 'binary',
@@ -226,10 +252,10 @@ class Compiler
     /**
      * Compile: integer range
      *
-     * @param Fluent $fluent
+     * @param FluentIntegerRange $fluent
      * @return array
      */
-    public function compileIntegerRange(Fluent $fluent) : array
+    public function compileIntegerRange(FluentIntegerRange $fluent) : array
     {
         return $this->compileRange($fluent);
     }
@@ -237,10 +263,10 @@ class Compiler
     /**
      * Compile: float range
      *
-     * @param Fluent $fluent
+     * @param FluentFloatRange $fluent
      * @return array
      */
-    public function compileFloatRange(Fluent $fluent) : array
+    public function compileFloatRange(FluentFloatRange $fluent) : array
     {
         return $this->compileRange($fluent);
     }
@@ -248,10 +274,10 @@ class Compiler
     /**
      * Compile: long range
      *
-     * @param Fluent $fluent
+     * @param FluentLongRange $fluent
      * @return array
      */
-    public function compileLongRange(Fluent $fluent) : array
+    public function compileLongRange(FluentLongRange $fluent) : array
     {
         return $this->compileRange($fluent);
     }
@@ -259,10 +285,10 @@ class Compiler
     /**
      * Compile: double range
      *
-     * @param Fluent $fluent
+     * @param FluentDoubleRange $fluent
      * @return array
      */
-    public function compileDoubleRange(Fluent $fluent) : array
+    public function compileDoubleRange(FluentDoubleRange $fluent) : array
     {
         return $this->compileRange($fluent);
     }
@@ -270,10 +296,10 @@ class Compiler
     /**
      * Compile: date range
      *
-     * @param Fluent $fluent
+     * @param FluentDateRange $fluent
      * @return array
      */
-    public function compileDateRange(Fluent $fluent) : array
+    public function compileDateRange(FluentDateRange $fluent) : array
     {
         return $this->compileRange($fluent);
     }
@@ -281,10 +307,10 @@ class Compiler
     /**
      * Compile: ip range
      *
-     * @param Fluent $fluent
+     * @param FluentIpRange $fluent
      * @return array
      */
-    public function compileIpRange(Fluent $fluent) : array
+    public function compileIpRange(FluentIpRange $fluent) : array
     {
         return $this->compileRange($fluent);
     }
@@ -309,10 +335,10 @@ class Compiler
     /**
      * Compile: nested
      *
-     * @param Fluent $fluent
+     * @param FluentNested $fluent
      * @return array
      */
-    public function compileNested(Fluent $fluent) : array
+    public function compileNested(FluentNested $fluent) : array
     {
         return $this->formatAttributes([
             'type' => 'nested',
@@ -328,10 +354,10 @@ class Compiler
     /**
      * Compile: object
      *
-     * @param Fluent $fluent
+     * @param FluentObject $fluent
      * @return array
      */
-    public function compileObject(Fluent $fluent) : array
+    public function compileObject(FluentObject $fluent) : array
     {
         return $this->formatAttributes([
             'type' => 'nested',
@@ -362,10 +388,10 @@ class Compiler
     /**
      * Compile: geo point
      *
-     * @param Fluent $fluent
+     * @param FluentGeoPoint $fluent
      * @return array
      */
-    public function compileGeoPoint(Fluent $fluent) : array
+    public function compileGeoPoint(FluentGeoPoint $fluent) : array
     {
         return $this->formatAttributes([
             'type' => 'geo_point',
@@ -378,10 +404,10 @@ class Compiler
     /**
      * Compile: geo shape
      *
-     * @param Fluent $fluent
+     * @param FluentGeoShape $fluent
      * @return array
      */
-    public function compileGeoShape(Fluent $fluent) : array
+    public function compileGeoShape(FluentGeoShape $fluent) : array
     {
         return $this->formatAttributes([
             'type' => 'geo_shape',
@@ -400,10 +426,10 @@ class Compiler
     /**
      * Compile: ip
      *
-     * @param Fluent $fluent
+     * @param FluentIp $fluent
      * @return array
      */
-    public function compileIp(Fluent $fluent) : array
+    public function compileIp(FluentIp $fluent) : array
     {
         return $this->formatAttributes([
             'type' => 'ip',
@@ -418,10 +444,10 @@ class Compiler
     /**
      * Compile: completion
      *
-     * @param Fluent $fluent
+     * @param FluentCompletion $fluent
      * @return array
      */
-    public function compileCompletion(Fluent $fluent) : array
+    public function compileCompletion(FluentCompletion $fluent) : array
     {
         return $this->formatAttributes([
             'type' => 'completion',
@@ -436,10 +462,10 @@ class Compiler
     /**
      * Compile: token count
      *
-     * @param Fluent $fluent
+     * @param FluentTokenCount $fluent
      * @return array
      */
-    public function compileTokenCount(Fluent $fluent) : array
+    public function compileTokenCount(FluentTokenCount $fluent) : array
     {
         return $this->formatAttributes([
             'type' => 'token_count',
@@ -470,7 +496,7 @@ class Compiler
     
         foreach ($fields as $field) {
             if ($field instanceof Fluent && !is_null($field->type)) {
-                $method = 'compile' . ucfirst($this->camelize($field->type));
+                $method = 'compile' . ucfirst(camel_case($field->type));
                 if (method_exists($this, $method)) {
                     $statements[$field->name] = (array)$this->$method($field);
                 }
@@ -478,10 +504,5 @@ class Compiler
         }
     
         return $statements;
-    }
-    
-    private function camelize(string $input, string $separator = '_') : string
-    {
-        return str_replace($separator, '', ucwords($input, $separator));
     }
 }

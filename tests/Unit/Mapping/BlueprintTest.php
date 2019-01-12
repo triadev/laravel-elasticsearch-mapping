@@ -24,7 +24,10 @@ class BlueprintTest extends TestCase
      */
     public function it_builds_mapping_with_fluent_syntax()
     {
-        $this->blueprint->text('TEXT')->analyzer('ANALYZER');
+        $this->blueprint->text('TEXT')
+            ->analyzer('ANALYZER')
+            ->boost(5);
+        
         $this->blueprint->keyword('KEYWORD');
         $this->blueprint->long('LONG');
         $this->blueprint->integer('INTEGER');
@@ -58,7 +61,8 @@ class BlueprintTest extends TestCase
         $this->assertEquals([
             'TEXT' => [
                 'type' => 'text',
-                'analyzer' => 'ANALYZER'
+                'analyzer' => 'ANALYZER',
+                'boost' => 5
             ],
             'KEYWORD' => [
                 'type' => 'keyword'

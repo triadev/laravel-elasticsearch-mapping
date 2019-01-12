@@ -3,6 +3,32 @@ namespace Triadev\Es\Mapping\Mapping;
 
 use Illuminate\Support\Fluent;
 use Triadev\Es\Mapping\Facade\ElasticMapping;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentBinary;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentBoolean;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentByte;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentCompletion;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentDate;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentDateRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentDouble;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentDoubleRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentFloat;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentFloatRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentGeoPoint;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentGeoShape;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentHalfFloat;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentInteger;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentIntegerRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentIp;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentIpRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentKeyword;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentLong;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentLongRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentNested;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentObject;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentScaledFloat;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentShort;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentText;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentTokenCount;
 
 class Blueprint
 {
@@ -105,9 +131,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentText
      */
-    public function text(string $field, array $attributes = []) : Fluent
+    public function text(string $field, array $attributes = []) : FluentText
     {
         return $this->addField('text', $field, $attributes);
     }
@@ -117,9 +143,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentKeyword
      */
-    public function keyword(string $field, array $attributes = []) : Fluent
+    public function keyword(string $field, array $attributes = []) : FluentKeyword
     {
         return $this->addField('keyword', $field, $attributes);
     }
@@ -129,9 +155,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentLong
      */
-    public function long(string $field, array $attributes = []) : Fluent
+    public function long(string $field, array $attributes = []) : FluentLong
     {
         return $this->addField('long', $field, $attributes);
     }
@@ -141,9 +167,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentInteger
      */
-    public function integer(string $field, array $attributes = []) : Fluent
+    public function integer(string $field, array $attributes = []) : FluentInteger
     {
         return $this->addField('integer', $field, $attributes);
     }
@@ -153,9 +179,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentShort
      */
-    public function short(string $field, array $attributes = []) : Fluent
+    public function short(string $field, array $attributes = []) : FluentShort
     {
         return $this->addField('short', $field, $attributes);
     }
@@ -165,9 +191,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentByte
      */
-    public function byte(string $field, array $attributes = []) : Fluent
+    public function byte(string $field, array $attributes = []) : FluentByte
     {
         return $this->addField('byte', $field, $attributes);
     }
@@ -177,9 +203,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentDouble
      */
-    public function double(string $field, array $attributes = []) : Fluent
+    public function double(string $field, array $attributes = []) : FluentDouble
     {
         return $this->addField('double', $field, $attributes);
     }
@@ -189,9 +215,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentFloat
      */
-    public function float(string $field, array $attributes = []) : Fluent
+    public function float(string $field, array $attributes = []) : FluentFloat
     {
         return $this->addField('float', $field, $attributes);
     }
@@ -201,9 +227,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentHalfFloat
      */
-    public function halfFloat(string $field, array $attributes = []) : Fluent
+    public function halfFloat(string $field, array $attributes = []) : FluentHalfFloat
     {
         return $this->addField('half_float', $field, $attributes);
     }
@@ -213,9 +239,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentScaledFloat
      */
-    public function scaledFloat(string $field, array $attributes = []) : Fluent
+    public function scaledFloat(string $field, array $attributes = []) : FluentScaledFloat
     {
         return $this->addField('scaled_float', $field, $attributes);
     }
@@ -225,9 +251,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentDate
      */
-    public function date(string $field, array $attributes = []) : Fluent
+    public function date(string $field, array $attributes = []) : FluentDate
     {
         return $this->addField('date', $field, $attributes);
     }
@@ -237,9 +263,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentBoolean
      */
-    public function boolean(string $field, array $attributes = []) : Fluent
+    public function boolean(string $field, array $attributes = []) : FluentBoolean
     {
         return $this->addField('boolean', $field, $attributes);
     }
@@ -249,9 +275,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentBinary
      */
-    public function binary(string $field, array $attributes = []) : Fluent
+    public function binary(string $field, array $attributes = []) : FluentBinary
     {
         return $this->addField('binary', $field, $attributes);
     }
@@ -262,11 +288,11 @@ class Blueprint
      * @param string $field
      * @param string $type
      * @param array $attributes
-     * @return Fluent
+     * @return FluentIntegerRange|FluentFloatRange|FluentLongRange|FluentDoubleRange|FluentDateRange|FluentIpRange
      *
      * @throws \InvalidArgumentException
      */
-    public function range(string $field, string $type, array $attributes = []) : Fluent
+    public function range(string $field, string $type, array $attributes = [])
     {
         $validTypes = [
             'integer',
@@ -289,9 +315,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentNested
      */
-    public function nested(string $field, array $attributes = []) : Fluent
+    public function nested(string $field, array $attributes = []) : FluentNested
     {
         return $this->addField('nested', $field, $attributes);
     }
@@ -301,9 +327,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentObject
      */
-    public function object(string $field, array $attributes = []) : Fluent
+    public function object(string $field, array $attributes = []) : FluentObject
     {
         return $this->addField('object', $field, $attributes);
     }
@@ -313,9 +339,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentGeoPoint
      */
-    public function geoPoint(string $field, array $attributes = []) : Fluent
+    public function geoPoint(string $field, array $attributes = []) : FluentGeoPoint
     {
         return $this->addField('geo_point', $field, $attributes);
     }
@@ -325,9 +351,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentGeoShape
      */
-    public function geoShape(string $field, array $attributes = []) : Fluent
+    public function geoShape(string $field, array $attributes = []) : FluentGeoShape
     {
         return $this->addField('geo_shape', $field, $attributes);
     }
@@ -337,9 +363,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentIp
      */
-    public function ip(string $field, array $attributes = []) : Fluent
+    public function ip(string $field, array $attributes = []) : FluentIp
     {
         return $this->addField('ip', $field, $attributes);
     }
@@ -349,9 +375,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentCompletion
      */
-    public function completion(string $field, array $attributes = []) : Fluent
+    public function completion(string $field, array $attributes = []) : FluentCompletion
     {
         return $this->addField('completion', $field, $attributes);
     }
@@ -361,9 +387,9 @@ class Blueprint
      *
      * @param string $field
      * @param array $attributes
-     * @return Fluent
+     * @return FluentTokenCount
      */
-    public function tokenCount(string $field, array $attributes = []) : Fluent
+    public function tokenCount(string $field, array $attributes = []) : FluentTokenCount
     {
         return $this->addField('token_count', $field, $attributes);
     }
@@ -374,11 +400,13 @@ class Blueprint
      * @param string $type
      * @param string $name
      * @param array $attributes
-     * @return Fluent
+     * @return mixed
      */
-    public function addField(string $type, string $name, array $attributes = []) : Fluent
+    public function addField(string $type, string $name, array $attributes = [])
     {
-        $this->fields[] = $field = new Fluent(
+        $fluentClass = sprintf('\Triadev\Es\Mapping\Mapping\Fluent\Fluent%s', ucfirst(camel_case($type)));
+        
+        $this->fields[] = $field = new $fluentClass(
             array_merge(
                 compact(
                     'type',
