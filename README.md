@@ -13,6 +13,7 @@ A service provider for laravel with a fluent elasticsearch mapping builder.
 [![Latest stable][ico-version-stable]][link-packagist]
 [![Latest development][ico-version-dev]][link-packagist]
 [![Monthly installs][ico-downloads-monthly]][link-downloads]
+[![Total Downloads](https://img.shields.io/packagist/dt/triadev/laravel-elasticsearch-mapping.svg?style=flat-square)](https://packagist.org/packages/triadev/laravel-elasticsearch-mapping)
 
 ## Supported laravel versions
 [![Laravel 5.5][icon-l55]][link-laravel]
@@ -34,6 +35,45 @@ A service provider for laravel with a fluent elasticsearch mapping builder.
 ### Application
 The package is registered through the package discovery of laravel and Composer.
 >https://laravel.com/docs/5.7/packages
+
+## Configuration
+The elasticsearch client is generated via the package: [LaravelElasticsearchProvider](https://github.com/triadev/LaravelElasticsearchProvider).<br />
+You can find the environment variables for the elasticsearch client in the readme of the package.
+
+## Usage
+This package offers a fluent mapping builder for elasticsearch. The entry point for each mapping build is a facade.
+>Triadev\Es\Mapping\Facade\ElasticMapping
+
+### Build mapping
+```php
+use Triadev\Es\Mapping\Mapping\Blueprint;
+
+ElasticMapping::map(function (Blueprint $blueprint) {
+    // fluent syntax
+    $blueprint->keyword('EXAMPLE')->boost(5);
+
+    // attributes array syntax
+    $blueprint->keyword('EXAMPLE', [
+        'boost' => 5
+    ]);
+
+    // settings are used when creating a new index
+    $blueprint->settings([
+        'index' => [
+            'number_of_replicas' => 10,
+            'number_of_shards' => 12,
+            'refresh_interval' => '30s'
+        ]
+    ]);
+}, INDEX, TYPE);
+```
+
+#### Create index
+If the index does not exist a new index will be created.
+This also includes the configuration from *$blueprint->settings()*.
+
+#### Update index
+If the index exists an update will be executed.
 
 ## Reporting Issues
 If you do find an issue, please feel free to report it with GitHub's bug tracker for this project.
