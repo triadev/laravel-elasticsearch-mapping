@@ -1,10 +1,35 @@
 <?php
 namespace Tests\Unit\Business\Mapping;
 
-use Illuminate\Support\Fluent;
 use Tests\TestCase;
 use Triadev\Es\Mapping\Mapping\Blueprint;
 use Triadev\Es\Mapping\Mapping\Compiler;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentBinary;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentBoolean;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentByte;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentCompletion;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentDate;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentDateRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentDouble;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentDoubleRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentFloat;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentFloatRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentGeoPoint;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentGeoShape;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentHalfFloat;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentInteger;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentIntegerRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentIp;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentIpRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentKeyword;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentLong;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentLongRange;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentNested;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentObject;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentScaledFloat;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentShort;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentText;
+use Triadev\Es\Mapping\Mapping\Fluent\FluentTokenCount;
 
 class CompilerTest extends TestCase
 {
@@ -29,7 +54,7 @@ class CompilerTest extends TestCase
         $this->assertEquals([
             'type' => 'text',
             'analyzer' => 'ANALYZER'
-        ], $this->compiler->compileText(new Fluent([
+        ], $this->compiler->compileText(new FluentText([
             'type' => 'text',
             'analyzer' => 'ANALYZER'
         ])));
@@ -42,7 +67,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'keyword'
-        ], $this->compiler->compileKeyword(new Fluent()));
+        ], $this->compiler->compileKeyword(new FluentKeyword()));
     }
     
     /**
@@ -52,7 +77,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'long'
-        ], $this->compiler->compileLong(new Fluent([
+        ], $this->compiler->compileLong(new FluentLong([
             'type' => 'long'
         ])));
     }
@@ -64,7 +89,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'integer'
-        ], $this->compiler->compileInteger(new Fluent([
+        ], $this->compiler->compileInteger(new FluentInteger([
             'type' => 'integer'
         ])));
     }
@@ -76,7 +101,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'short'
-        ], $this->compiler->compileShort(new Fluent([
+        ], $this->compiler->compileShort(new FluentShort([
             'type' => 'short'
         ])));
     }
@@ -88,7 +113,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'byte'
-        ], $this->compiler->compileByte(new Fluent([
+        ], $this->compiler->compileByte(new FluentByte([
             'type' => 'byte'
         ])));
     }
@@ -100,7 +125,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'double'
-        ], $this->compiler->compileDouble(new Fluent([
+        ], $this->compiler->compileDouble(new FluentDouble([
             'type' => 'double'
         ])));
     }
@@ -112,7 +137,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'float'
-        ], $this->compiler->compileFloat(new Fluent([
+        ], $this->compiler->compileFloat(new FluentFloat([
             'type' => 'float'
         ])));
     }
@@ -124,7 +149,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'half_float'
-        ], $this->compiler->compileHalfFloat(new Fluent([
+        ], $this->compiler->compileHalfFloat(new FluentHalfFloat([
             'type' => 'half_float'
         ])));
     }
@@ -136,7 +161,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'scaled_float'
-        ], $this->compiler->compileScaledFloat(new Fluent([
+        ], $this->compiler->compileScaledFloat(new FluentScaledFloat([
             'type' => 'scaled_float'
         ])));
     }
@@ -148,7 +173,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'date'
-        ], $this->compiler->compileDate(new Fluent()));
+        ], $this->compiler->compileDate(new FluentDate()));
     }
     
     /**
@@ -158,7 +183,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'boolean'
-        ], $this->compiler->compileBoolean(new Fluent()));
+        ], $this->compiler->compileBoolean(new FluentBoolean()));
     }
     
     /**
@@ -168,7 +193,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'binary'
-        ], $this->compiler->compileBinary(new Fluent()));
+        ], $this->compiler->compileBinary(new FluentBinary()));
     }
     
     /**
@@ -178,7 +203,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'integer_range'
-        ], $this->compiler->compileIntegerRange(new Fluent([
+        ], $this->compiler->compileIntegerRange(new FluentIntegerRange([
             'type' => 'integer_range'
         ])));
     }
@@ -190,7 +215,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'float_range'
-        ], $this->compiler->compileFloatRange(new Fluent([
+        ], $this->compiler->compileFloatRange(new FluentFloatRange([
             'type' => 'float_range'
         ])));
     }
@@ -202,7 +227,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'long_range'
-        ], $this->compiler->compileLongRange(new Fluent([
+        ], $this->compiler->compileLongRange(new FluentLongRange([
             'type' => 'long_range'
         ])));
     }
@@ -214,7 +239,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'double_range'
-        ], $this->compiler->compileDoubleRange(new Fluent([
+        ], $this->compiler->compileDoubleRange(new FluentDoubleRange([
             'type' => 'double_range'
         ])));
     }
@@ -226,7 +251,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'date_range'
-        ], $this->compiler->compileIntegerRange(new Fluent([
+        ], $this->compiler->compileDateRange(new FluentDateRange([
             'type' => 'date_range'
         ])));
     }
@@ -238,7 +263,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'ip_range'
-        ], $this->compiler->compileIntegerRange(new Fluent([
+        ], $this->compiler->compileIpRange(new FluentIpRange([
             'type' => 'ip_range'
         ])));
     }
@@ -255,7 +280,7 @@ class CompilerTest extends TestCase
                     'type' => 'keyword'
                 ]
             ]
-        ], $this->compiler->compileNested(new Fluent([
+        ], $this->compiler->compileNested(new FluentNested([
             'callback' => function (Blueprint $blueprint) {
                 $blueprint->keyword('KEYWORD');
             }
@@ -274,7 +299,7 @@ class CompilerTest extends TestCase
                     'type' => 'keyword'
                 ]
             ]
-        ], $this->compiler->compileObject(new Fluent([
+        ], $this->compiler->compileObject(new FluentObject([
             'callback' => function (Blueprint $blueprint) {
                 $blueprint->keyword('KEYWORD');
             }
@@ -288,7 +313,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'geo_point'
-        ], $this->compiler->compileGeoPoint(new Fluent()));
+        ], $this->compiler->compileGeoPoint(new FluentGeoPoint()));
     }
     
     /**
@@ -298,7 +323,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'geo_shape'
-        ], $this->compiler->compileGeoShape(new Fluent()));
+        ], $this->compiler->compileGeoShape(new FluentGeoShape()));
     }
     
     /**
@@ -308,7 +333,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'ip'
-        ], $this->compiler->compileIp(new Fluent()));
+        ], $this->compiler->compileIp(new FluentIp()));
     }
     
     /**
@@ -318,7 +343,7 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'completion'
-        ], $this->compiler->compileCompletion(new Fluent()));
+        ], $this->compiler->compileCompletion(new FluentCompletion()));
     }
     
     /**
@@ -328,6 +353,6 @@ class CompilerTest extends TestCase
     {
         $this->assertEquals([
             'type' => 'token_count'
-        ], $this->compiler->compileTokenCount(new Fluent()));
+        ], $this->compiler->compileTokenCount(new FluentTokenCount()));
     }
 }
